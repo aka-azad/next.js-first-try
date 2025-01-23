@@ -5,14 +5,14 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <Link href={'/'}>Home</Link>
+        <Link href={"/"}>Home</Link>
       </li>
     </>
   );
   const PrivateLinks = (
     <>
       <li>
-        <Link href={'/'}>Profile</Link>
+        <Link href={{ pathname: "/" }}>Profile</Link>
       </li>
     </>
   );
