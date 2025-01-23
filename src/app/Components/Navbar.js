@@ -1,3 +1,7 @@
+import {
+  RegisterLink,
+  LoginLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
@@ -51,7 +55,8 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-3">
           <ThemeToggle />
-          <a className="btn">Button</a>
+          <RegisterLink className="btn">Sign Up</RegisterLink>
+          <LoginLink className="btn">Sign In</LoginLink>
         </div>
       </nav>
     </div>
