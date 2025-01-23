@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const BlogCard = async ({ blog, authenticated }) => {
+const BlogCard = async ({ blog }) => {
   return (
     <div>
       <div className="card bg-base-200  shadow-xl">
