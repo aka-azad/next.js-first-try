@@ -1,11 +1,15 @@
 import {
   RegisterLink,
   LoginLink,
+  LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const { getUser, isAuthenticated } = getKindeServerSession();
+  const user = await getUser();
   const links = (
     <>
       <li>
@@ -16,7 +20,7 @@ const Navbar = () => {
   const PrivateLinks = (
     <>
       <li>
-        <Link href={{ pathname: "/" }}>Profile</Link>
+        <Link href={"/profile"}>Profile</Link>
       </li>
     </>
   );
@@ -45,18 +49,29 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              {links}
+              {links} {isAuthenticated && user && PrivateLinks}
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">First Try</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1"> {links}</ul>
+          <ul className="menu menu-horizontal px-1">
+            {links}
+            {isAuthenticated && user && PrivateLinks}
+          </ul>
         </div>
         <div className="navbar-end gap-3">
           <ThemeToggle />
-          <RegisterLink className="btn">Sign Up</RegisterLink>
-          <LoginLink className="btn">Sign In</LoginLink>
+          {isAuthenticated && user ? (
+            <>
+              <LogoutLink className="btn">Sign Out</LogoutLink>
+            </>
+          ) : (
+            <>
+              <RegisterLink className="btn">Sign Up</RegisterLink>
+              <LoginLink className="btn">Sign In</LoginLink>
+            </>
+          )}
         </div>
       </nav>
     </div>
