@@ -64,7 +64,9 @@ const Navbar = async () => {
           <ThemeToggle />
           {isAuthenticated && user ? (
             <>
-              <LogoutLink className="btn">Sign Out</LogoutLink>
+              <Link href={"/api/auth/logout"} className="btn">
+                Sign Out
+              </Link>
             </>
           ) : (
             <>
