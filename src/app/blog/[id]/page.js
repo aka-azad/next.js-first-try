@@ -1,14 +1,7 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import axios from "axios";
-import { redirect } from "next/navigation";
 import React from "react";
 
 const blog = async ({ params }) => {
-  const { isAuthenticated, getUser } = getKindeServerSession();
-  const user = await getUser()
-  if (isAuthenticated() && !user) {
-    redirect("/api/auth/login");
-  }
   const realParams = await params;
   const id = await realParams.id;
   console.log("first =", await id);
